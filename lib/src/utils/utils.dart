@@ -73,7 +73,7 @@ class Utils {
       ),
       if (event.showTimeStartEnd)
         TextSpan(
-          text: "${event.startTime.hour}:${event.startTime.minute} - ${event.endTime.hour}:${event.endTime.minute}"
+          text: "${event.startTime.hour}:${event.startTime.minute} - ${event.endTime.hour}:${event.endTime.minute}",
           style: event.timeStyle,
         ),
       TextSpan(text: event.subtitle, style: event.subtitleStyle),
