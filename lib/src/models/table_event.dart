@@ -43,7 +43,7 @@ class TableEvent {
     required this.laneIndex,
     this.subtitle: '',
     this.showTimeStartEnd: true,
-    this.timeStyle: const TextStyle(color: Colors.white, fontSize: 12),
+    this.timeStyle,
     required this.startTime,
     required this.endTime,
     this.padding: const EdgeInsets.all(10),
@@ -52,6 +52,6 @@ class TableEvent {
     this.decoration,
     this.backgroundColor: const Color(0xCC2196F3),
     this.textStyle: const TextStyle(color: Colors.white),
-    this.subtitleStyle: const TextStyle(color: Colors.white, fontSize: 12),
+    this.subtitleStyle,
   }) : assert(endTime.isAfter(startTime));
 }
