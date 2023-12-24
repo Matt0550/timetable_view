@@ -10,8 +10,11 @@ class TableEvent {
   /// Id to uniquely identify the lane an event falls under. Used mainly in callbacks
   final int laneIndex;
 
-  /// Optional. Preferably abbreviate string to less than 5 characters
-  final String location;
+  /// Optional. Subtitle to display under title
+  final String subtitle;
+
+  final bool showTimeStartEnd;
+  final TextStyle? timeStyle;
 
   final TableEventTime startTime;
 
@@ -32,11 +35,15 @@ class TableEvent {
 
   final TextStyle textStyle;
 
+  final TextStyle? subtitleStyle;
+
   TableEvent({
     required this.title,
     required this.eventId,
     required this.laneIndex,
-    this.location: '',
+    this.subtitle: '',
+    this.showTimeStartEnd: true,
+    this.timeStyle: const TextStyle(color: Colors.white, fontSize: 12),
     required this.startTime,
     required this.endTime,
     this.padding: const EdgeInsets.all(10),
@@ -45,5 +52,6 @@ class TableEvent {
     this.decoration,
     this.backgroundColor: const Color(0xCC2196F3),
     this.textStyle: const TextStyle(color: Colors.white),
-  })  : assert(endTime.isAfter(startTime));
+    this.subtitleStyle: const TextStyle(color: Colors.white, fontSize: 12),
+  }) : assert(endTime.isAfter(startTime));
 }

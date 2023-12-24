@@ -71,7 +71,23 @@ class Utils {
         text: event.title,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      TextSpan(text: event.location, style: TextStyle(color: Colors.white60)),
+      if (event.showTimeStartEnd)
+        TextSpan(
+          text: '\n' +
+              hourFormatter(
+                event.startTime.hour,
+                event.startTime.minute,
+                false,
+              ) +
+              ' - ' +
+              hourFormatter(
+                event.endTime.hour,
+                event.endTime.minute,
+                false,
+              ),
+          style: event.timeStyle,
+        ),
+      TextSpan(text: event.subtitle, style: event.subtitleStyle),
     ];
 
     bool? exceedHeight;
