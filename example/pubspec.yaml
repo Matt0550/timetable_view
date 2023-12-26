@@ -3,15 +3,14 @@ description: A Demo Application of Flutter Timetable View
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.17.6 <3.7.12"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
   # flutter_timetable_view: ^0.2.0
   timetable_view:
-    path: ../../timetable_view
+    path: ../
 
 dev_dependencies:
   flutter_test:

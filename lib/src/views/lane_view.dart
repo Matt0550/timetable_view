@@ -23,7 +23,7 @@ class LaneView extends StatelessWidget {
     required this.index,
     required this.onEmptyCellTap,
     required this.onEventTap,
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -95,8 +95,13 @@ class _EmptyTimeSlot extends StatelessWidget {
   final TableEventTime end;
   final Function(int laneIndex, TableEventTime start, TableEventTime end) onTap;
 
-  _EmptyTimeSlot(
-      {required this.laneIndex, required this.start, required this.end, required this.onTap, required this.timetableStyle,});
+  _EmptyTimeSlot({
+    required this.laneIndex,
+    required this.start,
+    required this.end,
+    required this.onTap,
+    required this.timetableStyle,
+  });
 
   @override
   Widget build(BuildContext context) {

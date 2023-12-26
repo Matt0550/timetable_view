@@ -21,12 +21,12 @@ class DiagonalScrollView extends StatefulWidget {
     Key? key,
     required this.child,
     this.onScroll,
-    this.maxWidth: double.infinity,
-    this.maxHeight: double.infinity,
-    this.flingVelocityReduction: 1,
+    this.maxWidth = double.infinity,
+    this.maxHeight = double.infinity,
+    this.flingVelocityReduction = 1,
     this.horizontalPixelsStreamController,
     this.verticalPixelsStreamController,
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   _DiagonalScrollViewState createState() => _DiagonalScrollViewState();
@@ -72,7 +72,7 @@ class _DiagonalScrollViewState extends State<DiagonalScrollView>
 
   Offset _rectifyChildPosition({
     required Offset position,
-    Offset offset: const Offset(0, 0),
+    Offset offset = const Offset(0, 0),
   }) {
     Offset containerScaled = Offset(containerWidth, containerHeight);
     double x = position.dx;
@@ -117,7 +117,11 @@ class _DiagonalScrollViewState extends State<DiagonalScrollView>
     _emitScroll();
   }
 
-  void _handleScaleEnd(ScaleEndDetails details) {
+  void _stopFlingAnimation() {
+    _controller.stop();
+  }
+
+  Future<void> _handleScaleEnd(ScaleEndDetails details) async {
     Offset velocity = details.velocity.pixelsPerSecond;
     if (velocity.distance > 0.0) {
       velocity *= widget.flingVelocityReduction;
@@ -126,6 +130,29 @@ class _DiagonalScrollViewState extends State<DiagonalScrollView>
         end: Offset(0.0, 0.0),
       ).animate(_controller);
       _controller.fling(velocity: 2);
+    } else {
+      // Continuously update the position until it stops moving
+      while (_controller.isAnimating) {
+        Offset newPosition = _rectifyChildPosition(
+          position: _position + _animation.value,
+        );
+
+        setState(() {
+          _position = newPosition;
+        });
+
+        _emitScroll();
+
+        // Update the animation with the new position
+        _animation = Tween<Offset>(
+          begin: _position - newPosition,
+          end: Offset(0.0, 0.0),
+        ).animate(_controller);
+        await _controller.forward();
+
+        // Sleep for a short period to avoid excessive updates
+        await Future.delayed(const Duration(milliseconds: 10));
+      }
     }
   }
 

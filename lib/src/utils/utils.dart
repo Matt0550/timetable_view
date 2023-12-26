@@ -74,7 +74,7 @@ class Utils {
       if (event.showTimeStartEnd)
         TextSpan(
           text:
-              "${hourFormatter(event.start.hour, event.start.minute, false)} - ${hourFormatter(event.end.hour, event.end.minute, false)}",
+              "${hourFormatter(event.startTime.hour, event.startTime.minute, false)} - ${hourFormatter(event.endTime.hour, event.endTime.minute, false)}\n",
           style: event.timeStyle,
         ),
       TextSpan(text: event.subtitle, style: event.subtitleStyle),

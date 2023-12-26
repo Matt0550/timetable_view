@@ -22,7 +22,7 @@ class TimetableView extends StatefulWidget {
     this.timetableStyle: const TimetableStyle(),
     required this.onEmptySlotTap,
     required this.onEventTap,
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   _TimetableViewState createState() => _TimetableViewState();
@@ -178,7 +178,8 @@ class _TimetableViewState extends State<TimetableView>
         child: Opacity(
           opacity: 0.5,
           child: Container(
-            decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
+            decoration:
+                BoxDecoration(color: Theme.of(context).colorScheme.secondary),
             margin: const EdgeInsets.all(1),
             padding: const EdgeInsets.all(1),
             child: Icon(
@@ -279,8 +280,8 @@ class EmptyTimeSlot extends StatelessWidget {
   final int? laneIndex;
   final TableEventTime? start;
   final TableEventTime? end;
-  final void Function(int? laneIndex, TableEventTime? start, TableEventTime? end)
-      onTap;
+  final void Function(
+      int? laneIndex, TableEventTime? start, TableEventTime? end) onTap;
 
   EmptyTimeSlot(this.timetableStyle,
       {this.laneIndex, this.start, this.end, required this.onTap});
@@ -299,7 +300,8 @@ class EmptyTimeSlot extends StatelessWidget {
         child: Opacity(
           opacity: 0.5,
           child: Container(
-            decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
+            decoration:
+                BoxDecoration(color: Theme.of(context).colorScheme.secondary),
             margin: const EdgeInsets.all(1),
             padding: const EdgeInsets.all(1),
             child: Icon(
